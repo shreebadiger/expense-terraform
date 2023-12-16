@@ -1,6 +1,6 @@
 module "vpc" {
     source = "./module/vpc"
-}
-resource "null_resource" "test" {
-
+    vpc_cidr_block  = var.vpc_cidr_block 
+    env = var.env
+    tags = var.tags
 }
