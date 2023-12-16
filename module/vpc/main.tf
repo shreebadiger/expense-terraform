@@ -139,11 +139,3 @@ resource "aws_route" "default-vpc-peer-route" {
   vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
 }
 
-resource "aws_instance" "test" {
-    ami = "ami-03265a0778a880afb"
-    instance_type = "t3.micro"
-    subnet_id = aws_subnet.app.*.id[0]
-    tags = {
-        Name = "test"
-    }
-}
