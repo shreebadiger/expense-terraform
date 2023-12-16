@@ -8,4 +8,8 @@ module "vpc" {
     app_subnet = var.app_subnet
     db_subnet = var.db_subnet
     azs_subnet = var.azs_subnet
+    default_vpc_cidr_block = var.default_vpc_cidr_block
+    default_vpc_id = var.default_vpc_id
+    default_vpc_route_id = var.default_vpc_route_id
+    account_id = var.account_id
     }
