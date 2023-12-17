@@ -21,7 +21,7 @@ rds_allocated_storage =  20
 rds_engine = "mysql"
 rds_engine_version = "5.7.44"
 rds_instance_class = "db.t3.micro"
-env = "dev"
+
 
 
             
