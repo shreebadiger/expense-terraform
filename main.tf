@@ -27,3 +27,21 @@ module "rds"{
     sg_cidrs = var.app_subnet
 }
 
+module "backend" {
+    source = "./module/app"
+    env = var.env
+    tags = var.tags
+    component = "backend"
+    instance_type = var.backend["instance_type"]
+    instance_count = var.backend["instance_count"]
+    subnets = module.vpc.app_subnet
+    vpc_id = module.vpc.vpc_id
+    app_port = var.backend["app_port"]
+    sg_cidrs = var.web_subnet
+    bastion_cidrs = var.bastion_cidrs
+    }
+
+  
+
+
+

@@ -16,5 +16,7 @@ variable "rds_engine_version"{}
 variable "rds_instance_class"{}
 #variable "subnets" {}
 #variable "vpc_id" {}
+variable "backend" {}
+variable "bastion_cidrs" {}
 
 
