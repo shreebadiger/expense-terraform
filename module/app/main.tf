@@ -49,7 +49,7 @@ resource "aws_autoscaling_group" "main" {
     version = "$Latest"
   }
   tag {
-    key                 = "name"
+    key                 = "Name"
     value               = "${var.env}-${var.component}"
     propagate_at_launch = true
   }
