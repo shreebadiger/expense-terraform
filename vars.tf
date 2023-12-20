@@ -18,6 +18,6 @@ variable "rds_instance_class"{}
 #variable "vpc_id" {}
 variable "backend" {}
 variable "bastion_cidrs" {}
-variable "frontend" {}
+
 
 
