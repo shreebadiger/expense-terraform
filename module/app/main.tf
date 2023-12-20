@@ -95,7 +95,7 @@ resource "aws_iam_role" "main" {
 				"ssm:GetParameters",
 				"ssm:GetParameter"
 			],
-			"Resource": ["arn:aws:ssm:us-east-1:751177946459:parameter/${var.env}-${var.component}.*",
+			"Resource": ["arn:aws:ssm:us-east-1:751177946459:parameter/${var.env}.${var.component}.*",
       "arn:aws:ssm:us-east-1:751177946459:parameter/newrelic.licence_key",
       "arn:aws:ssm:us-east-1:751177946459:parameter/${var.env}.rds.*",
       "arn:aws:ssm:us-east-1:751177946459:parameter/grafana.api_key",
