@@ -95,14 +95,35 @@ resource "aws_iam_role" "main" {
 				"ssm:GetParameters",
 				"ssm:GetParameter"
 			],
-			"Resource": "arn:aws:ssm:us-east-1:751177946459:parameter/${var.env}-${var.component}.*"
+			"Resource": ["arn:aws:ssm:us-east-1:751177946459:parameter/${var.env}-${var.component}.*",
+      "arn:aws:ssm:us-east-1:751177946459:parameter/newrelic.licence_key",
+      "arn:aws:ssm:us-east-1:751177946459:parameter/${var.env}.rds.*",
+      "arn:aws:ssm:us-east-1:751177946459:parameter/grafana.api_key",
+      "arn:aws:ssm:us-east-1:751177946459:parameter/jenkins.*"
+      ]
 		},
 		{
 			"Sid": "listresources",
 			"Effect": "Allow",
 			"Action": "ssm:DescribeParameters",
 			"Resource": "*"
-		}
+		},
+        {
+            "Sid": "s3alertforprometheus",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:DeleteObjectVersion",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::d76-prometheus-alert-rule/*",
+                "arn:aws:s3:::d76-prometheus-alert-rule"
+            ]
+        }
+    
 	]
 })
 }
