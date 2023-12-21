@@ -57,16 +57,29 @@ module "frontend" {
 
     module "public-alb" {
     source = "./module/alb"
-env = var.env
-type = var.public_alb["type"]
-internal = var.public_alb["internal"]
-vpc_id = module.vpc.vpc_id
-lb_port = var.public_alb["lb_port"]
-sg_cidrs = ["0.0.0.0/0"]
-tags = var.tags
-subnets = module.vpc.public_subnet
-target_group_arn = module.frontend.target_group_arn
+    env = var.env
+    type = var.public_alb["type"]
+    internal = var.public_alb["internal"]
+    vpc_id = module.vpc.vpc_id
+    lb_port = var.public_alb["lb_port"]
+    sg_cidrs = ["0.0.0.0/0"]
+    tags = var.tags
+    subnets = module.vpc.public_subnet
+    target_group_arn = module.frontend.target_group_arn
 
+ }
+
+ module "backend-alb" {
+    source = "./module/alb"
+    env = var.env
+    type = var.backend_alb["type"]
+    internal = var.backend_alb["internal"]
+    vpc_id = module.vpc.vpc_id
+    lb_port = var.backend_alb["lb_port"]
+    sg_cidrs = var.web_subnet
+    tags = var.tags
+    subnets = module.vpc.app_subnet
+    target_group_arn = module.backend.target_group_arn
 
  }
 

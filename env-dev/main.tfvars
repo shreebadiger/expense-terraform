@@ -41,6 +41,12 @@ public_alb = {
     type ="public"
      lb_port = 80
 }
+
+backend_alb = {
+    internal = true
+    type ="backend"
+     lb_port = 80
+}
   
 
 
