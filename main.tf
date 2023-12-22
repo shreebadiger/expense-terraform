@@ -37,7 +37,7 @@ module "backend" {
     subnets = module.vpc.app_subnet
     vpc_id = module.vpc.vpc_id
     app_port = var.backend["app_port"]
-    sg_cidrs = var.web_subnet
+    sg_cidrs = var.app_subnet
     bastion_cidrs = var.bastion_cidrs
     }
 
