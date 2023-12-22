@@ -66,6 +66,8 @@ module "frontend" {
     tags = var.tags
     subnets = module.vpc.public_subnet
     target_group_arn = module.frontend.target_group_arn
+    component = var.public_alb["component"]
+    route53_zone_id = var.route53_zone_id
 
  }
 
@@ -80,6 +82,8 @@ module "frontend" {
     tags = var.tags
     subnets = module.vpc.app_subnet
     target_group_arn = module.backend.target_group_arn
+    component = var.backend_alb["component"]
+    route53_zone_id = var.route53_zone_id
 
  }
 

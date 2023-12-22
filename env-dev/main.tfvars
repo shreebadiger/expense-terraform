@@ -39,14 +39,19 @@ bastion_cidrs = ["172.31.40.141/32"]
 public_alb = {
     internal = false
     type ="public"
-     lb_port = 80
+    lb_port = 80
+    component = "frontend"
 }
 
 backend_alb = {
     internal = true
     type ="backend"
-     lb_port = 80
+    lb_port = 80
+    component = "backend"
 }
+
+route53_zone_id = "Z043769343BOX5323WQF"
+
   
 
 
