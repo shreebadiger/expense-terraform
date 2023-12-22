@@ -51,6 +51,7 @@ backend_alb = {
 }
 
 route53_zone_id = "Z043769343BOX5323WQF"
+kms = "arn:aws:kms:us-east-1:751177946459:key/a67450bb-b04f-45c0-8406-5588122b350e"
 
   
 

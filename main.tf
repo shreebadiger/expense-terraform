@@ -25,6 +25,7 @@ module "rds"{
     subnets = module.vpc.db_subnet
     vpc_id = module.vpc.vpc_id
     sg_cidrs = var.app_subnet
+    kms = var.kms
 }
 
 module "backend" {
@@ -39,7 +40,8 @@ module "backend" {
     app_port = var.backend["app_port"]
     sg_cidrs = var.app_subnet
     bastion_cidrs = var.bastion_cidrs
-    }
+    kms = var.kms
+}
 
 module "frontend" {
     source = "./module/app"
@@ -53,6 +55,7 @@ module "frontend" {
     app_port = var.frontend["app_port"]
     sg_cidrs = var.public_subnet
     bastion_cidrs = var.bastion_cidrs
+    kms = var.kms
     }
 
     module "public-alb" {
