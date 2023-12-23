@@ -94,3 +94,56 @@ resource "aws_route53_record" "main" {
   
   }
 
+  resource "aws_wafv2_web_acl" "main" {
+    name          = "${var.component}-${var.env}"
+    scope         = "REGIONAL"
+    tags          = {}
+    tags_all      = {}
+    token_domains = []
+
+    default_action {
+        allow {}
+    }
+
+    rule {
+        name     = "block_curl"
+        priority = 0
+
+        action {
+            block {
+            }
+        }
+
+        statement {
+            byte_match_statement {
+                positional_constraint = "STARTS_WITH"
+                search_string         = "curl"
+
+                field_to_match {
+                    single_header {
+                        name = "user-agent"
+                    }
+                }
+
+                text_transformation {
+                    priority = 0
+                    type     = "NONE"
+                }
+            }
+        }
+
+        visibility_config {
+            cloudwatch_metrics_enabled = true
+            metric_name                = "block_curl"
+            sampled_requests_enabled   = true
+        }
+    }
+
+    visibility_config {
+        cloudwatch_metrics_enabled = true
+        metric_name                = "${var.component}-${var.env}"
+        sampled_requests_enabled   = true
+    }
+}
+
+
