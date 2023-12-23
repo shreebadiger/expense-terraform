@@ -25,10 +25,10 @@ resource "aws_security_group" "main" {
   count             = var.enable_https ? 1 : 0
   from_port         = 443
   protocol          = "tcp"
-  to_port           = 443
   security_group_id = aws_security_group.main.id
+  to_port           = 443
   type              = "ingress"
-   cidr_blocks       = var.sg_cidrs
+  cidr_blocks       = var.sg_cidrs
    
 }
 
@@ -38,7 +38,7 @@ resource "aws_lb" "main" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.main.id]
   subnets            = var.subnets
-tags = merge(var.tags, {Name = "${var.env}-${var.type}-alb"})
+  tags = merge(var.tags, {Name = "${var.env}-${var.type}-alb"})
 }
 
 resource "aws_lb_listener" "main" {
@@ -71,9 +71,11 @@ resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.main.arn
   port              = "80"
   protocol          = "HTTP"
+  
+  
   default_action {
     type = "redirect"
-
+    
     redirect {
       port        = "443"
       protocol    = "HTTPS"
