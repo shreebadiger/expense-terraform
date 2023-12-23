@@ -29,6 +29,7 @@ module "rds"{
 }
 
 module "backend" {
+    depends_on = [ module.rds ]
     source = "./module/app"
     env = var.env
     tags = var.tags
