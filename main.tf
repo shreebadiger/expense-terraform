@@ -71,6 +71,8 @@ module "frontend" {
     target_group_arn = module.frontend.target_group_arn
     component = var.public_alb["component"]
     route53_zone_id = var.route53_zone_id
+    enable_https = var.public_alb["enable_https"]
+    certificate_arn = var.certificate_arn
 
  }
 
@@ -87,8 +89,10 @@ module "frontend" {
     target_group_arn = module.backend.target_group_arn
     component = var.backend_alb["component"]
     route53_zone_id = var.route53_zone_id
-
- }
+    enable_https = var.backend_alb["enable_https"]
+    certificate_arn = var.certificate_arn
+    
+}
 
 
   

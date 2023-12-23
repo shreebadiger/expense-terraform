@@ -24,5 +24,6 @@ variable "backend_alb" {}
 #variable "  component" {}
 variable"route53_zone_id"{}
 variable "kms" {}
+variable "certificate_arn" {}
 
 
