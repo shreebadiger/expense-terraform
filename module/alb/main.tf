@@ -3,21 +3,18 @@ resource "aws_security_group" "main" {
   description = "${var.env}-${var.type}-alb"
   vpc_id      = var.vpc_id
 
-  ingress {
+  dynamic "ingress" {
+    for_each = var.ingress
+    content {
     description      = "APP"
-    from_port        = 80
-    to_port          = 80
+    from_port        = ingress.value["port"]
+    to_port          = ingress.value["port"]
     protocol         = "tcp"
     cidr_blocks      = var.sg_cidrs
+      
+    }
   }
-
-  ingress {
-  description      = "APP"
-  from_port        = 443
-  to_port          = 443
-  protocol         = "tcp"
-  cidr_blocks      = var.sg_cidrs
-}
+  
 
   egress {
     from_port        = 0

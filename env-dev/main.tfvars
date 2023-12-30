@@ -42,6 +42,10 @@ public_alb = {
     lb_port = 80
     component = "frontend"
     enable_https = true
+    ingress = {
+    http = { port = 80 }
+    https = { port = 443 }
+    }
 }
 
 backend_alb = {
@@ -50,6 +54,9 @@ backend_alb = {
     lb_port = 80
     component = "backend"
     enable_https = false
+    ingress = {
+    http = { port = 80 }
+    }
 
 }
 
