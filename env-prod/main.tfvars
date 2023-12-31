@@ -1,5 +1,5 @@
 vpc_cidr_block = "10.20.0.0/16"
-env = "dev"
+env = "prod"
 tags = {
     company = "xyz co"
     bu_unit = "finance"
