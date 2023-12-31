@@ -47,7 +47,7 @@ resource "aws_db_instance" "main" {
   skip_final_snapshot  = true
   multi_az = true
   storage_type = "gp3"
-  db_subnet_group_name = aws_db_parameter_group.main.name
+  db_subnet_group_name = aws_db_subnet_group.main.name
   vpc_security_group_ids = [ aws_security_group.main.id ]
   kms_key_id = var.kms
   storage_encrypted = true
