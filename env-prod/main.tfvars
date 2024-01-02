@@ -26,14 +26,14 @@ rds_instance_class = "db.t3.small"
 backend = {
             app_port = 8080
             instance_count = 2
-            instance_type = "t3.micro"
+            instance_type = "t3.small"
             
         }
 
 frontend = {
             app_port = 80
             instance_count = 2
-            instance_type = "t3.micro"
+            instance_type = "t3.small"
             
         }
  
