@@ -34,7 +34,9 @@ frontend = {
             instance_count = 1
         }
  
-bastion_cidrs = ["172.31.40.141/32"]
+#bastion_cidrs = ["172.31.40.141/32"]
+bastion_cidrs = ["172.31.46.123/32"]
+
 
 public_alb = {
     internal = false
