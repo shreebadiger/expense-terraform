@@ -15,15 +15,22 @@
             parallel{
               stage('DEV ENV'){
                 steps{
+                    dir('DEV') {
+                git branch: 'main', url: 'https://github.com/shreebadiger/expense-terraform.git'      
                 sh 'terraform init -backend-config=env-dev/state.tfvars'
                 sh 'terraform ${ACTION} -auto-approve -var-file=env-dev/main.tfvars'
+
+                   }
                }
             } 
               stage('PROD ENV'){
                steps{
+                dir('PROD') {
+                git branch: 'main', url: 'https://github.com/shreebadiger/expense-terraform.git'                         
                 sh 'terraform init -backend-config=env-prod/state.tfvars'
                 sh 'terraform ${ACTION} -auto-approve -var-file=env-prod/main.tfvars'
                } 
+               }
 
             }
           }  
