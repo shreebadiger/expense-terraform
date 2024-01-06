@@ -81,7 +81,7 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_route53_record" "main" {
-  name    = "${var.component}-${var.env}"
+  name    = var.dns_name == null ? "${var.component}-${var.env}" : var.dns_name
   type    = "CNAME"
   ttl     = 30
   zone_id =var.route53_zone_id
