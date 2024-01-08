@@ -42,6 +42,7 @@ module "backend" {
     sg_cidrs = var.app_subnet
     bastion_cidrs = var.bastion_cidrs
     kms = var.kms
+    prometheus_cidrs = var.prometheus_cidrs
 }
 
 module "frontend" {
@@ -57,7 +58,8 @@ module "frontend" {
     sg_cidrs = var.public_subnet
     bastion_cidrs = var.bastion_cidrs
     kms = var.kms
-    }
+    prometheus_cidrs = var.prometheus_cidrs
+}
 
     module "public-alb" {
     source = "./module/alb"
@@ -77,7 +79,7 @@ module "frontend" {
     ingress = var.public_alb["ingress"]
     dns_name = var.env == "prod" ? "www" : null
 
- }
+}
 
  module "backend-alb" {
     source = "./module/alb"
